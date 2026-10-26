@@ -1,0 +1,40 @@
+---
+const studioName = "Atlas Studio";
+
+const navLinks = [
+  { label: "Projekty", href: "/work" },
+  { label: "O nas", href: "/about" },
+  { label: "Kontakt", href: "/contact" },
+];
+
+const pathname = Astro.url.pathname;
+const currentPath =
+  pathname.length > 1 && pathname.endsWith("/")
+    ? pathname.slice(0, -1)
+    : pathname;
+
+function isActive(href: string) {
+  return currentPath === href || currentPath.startsWith(`${href}/`);
+}
+---
+
+<style>
+  .nav_link.is-active{
+    /* background-color: rgb(172, 172, 172); */
+  }
+</style>
+
+<header>
+  <a href="/">{studioName}</a>
+  <nav aria-label="Główna nawigacja">
+    {navLinks.map((el) => (
+      <a
+        href={el.href}
+        class:list={["nav_link", { "is-active": isActive(el.href) }]}
+        aria-current={isActive(el.href) ? "page" : undefined}
+      >
+        {el.label}
+      </a>
+    ))}
+  </nav>
+</header>

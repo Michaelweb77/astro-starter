@@ -1,0 +1,28 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const siteName = "Atlas Studio";
+const defaultDescription =
+  "Studio motion i WebGL. Projektujemy ruch, który opowiada historie.";
+
+const { title, description = defaultDescription } = Astro.props;
+
+const pageTitle = title ? `${title} — ${siteName}` : siteName;
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
+---
+
+<title>{pageTitle}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonicalUrl} />
+
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content={siteName} />
+<meta property="og:locale" content="pl_PL" />
+<meta property="og:title" content={pageTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonicalUrl} />
+
+<meta name="twitter:card" content="summary" />

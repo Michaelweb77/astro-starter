@@ -1,0 +1,18 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  number: number;
+  isFeatured?: boolean;
+}
+
+const { title, description, number, isFeatured = false } = Astro.props;
+const formattedNumber = String(number).padStart(2, "0");
+---
+
+<article class:list={["service_card", { "is-featured": isFeatured }]}>
+  <span>{formattedNumber}</span>
+  <h3>{title}</h3>
+  <p>{description}</p>
+  {isFeatured && <strong>Najczęściej wybierane</strong>}
+</article>

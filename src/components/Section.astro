@@ -1,0 +1,26 @@
+---
+interface Props {
+  title: string;
+  id?: string;
+}
+
+const { title, id } = Astro.props;
+const headingId = id ? `${id}-title` : undefined;
+---
+
+<section id={id} aria-labelledby={headingId}>
+  <div class="section_container">
+  
+
+    <slot>
+      <p>default text</p>
+    </slot>
+    {
+      Astro.slots.has("actions") && (
+        <div class="section_actions">
+          <slot name="actions" />
+        </div>
+      )
+    }
+  </div>
+</section>

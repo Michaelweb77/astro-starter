@@ -1,0 +1,34 @@
+---
+const studioName = "Atlas Studio";
+const currentYear = new Date().getFullYear();
+
+const socials = [
+  { label: "Instagram", url: "https://www.instagram.com/" },
+  { label: "Dribbble", url: "https://dribbble.com/" },
+
+];
+
+const externalLink = {
+  target: "_blank",
+  rel: "noopener noreferrer",
+};
+---
+
+<footer>
+  <p>
+    © {currentYear} {studioName}
+  </p>
+  <ul>
+    {socials.map((el) => (
+      <li>
+        <a
+          href={el.url}
+          aria-label={`${studioName} na ${el.label}`}
+          {...externalLink}
+        >
+          {el.label}
+        </a>
+      </li>
+    ))}
+  </ul>
+</footer>
